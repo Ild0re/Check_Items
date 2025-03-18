@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Список товаров</string>
+    <string name="search">Поиск товаров</string>
+    <string name="in_storage">На складе</string>
+    <string name="date">Дата обновления</string>
+    <string name="count">Количество товара</string>
+    <string name="cancel">Отмена</string>
+    <string name="accept">Принять</string>
+    <string name="delete">Удаление товара</string>
+    <string name="delete_description">Вы действительно хотите удалить выбранный товар?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+</resources>
