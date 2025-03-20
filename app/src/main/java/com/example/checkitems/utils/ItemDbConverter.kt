@@ -27,12 +27,16 @@ class ItemDbConverter {
         )
     }
 
-    fun listToString(list: MutableList<String>): String {
+    fun convertFromEntities(list: List<ItemEntity>): List<Item> {
+        return list.map { item -> mapToItem(item) }
+    }
+
+    private fun listToString(list: MutableList<String>): String {
         return Gson().toJson(list)
     }
 
-    fun stringToList(string: String): MutableList<String> {
-        val type = object: TypeToken<MutableList<String>>() {}.type
+    private fun stringToList(string: String): MutableList<String> {
+        val type = object : TypeToken<MutableList<String>>() {}.type
         return Gson().fromJson(string, type)
     }
 }

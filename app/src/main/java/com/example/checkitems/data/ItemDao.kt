@@ -21,8 +21,8 @@ interface ItemDao {
     suspend fun deleteItem(item: ItemEntity)
 
     @Query("SELECT * FROM item")
-    suspend fun getAllItems(): Flow<List<ItemEntity>>
+    suspend fun getAllItems(): List<ItemEntity>
 
     @Query("SELECT * FROM item WHERE name LIKE :searchItem")
-    suspend fun searchItem(searchItem: String): Flow<List<ItemEntity>>
+    suspend fun searchItem(searchItem: String): List<ItemEntity>
 }
