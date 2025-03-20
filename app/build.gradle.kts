@@ -52,7 +52,7 @@ android {
 
 dependencies {
 
-
+    implementation(libs.converter.gson)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
