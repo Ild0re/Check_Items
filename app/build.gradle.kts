@@ -52,6 +52,7 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.material)
     implementation(libs.converter.gson)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.room.runtime)
