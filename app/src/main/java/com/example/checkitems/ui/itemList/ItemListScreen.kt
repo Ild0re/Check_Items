@@ -104,8 +104,8 @@ fun MainContent(modifier: Modifier = Modifier) {
 
         ItemList(
             products = generateDummyItems(),
-            onEditQuantity = { quantity ->
-                selectedItemQuantity = quantity
+            onEditQuantity = { amount ->
+                selectedItemQuantity = amount
                 showQuantityDialog = true
                 focusManager.clearFocus()
             },
@@ -117,12 +117,12 @@ fun MainContent(modifier: Modifier = Modifier) {
         if (showQuantityDialog) {
             QuantityDialog(
                 initialQuantity = selectedItemQuantity,
-                onQuantityChanged = { quantity ->
-                    selectedItemQuantity = quantity
+                onQuantityChanged = { amount ->
+                    selectedItemQuantity = amount
                 },
                 onDismiss = { showQuantityDialog = false },
                 onConfirm = {
-                    // TODO: Save quantity logic
+                    // TODO: Save amount logic
                     showQuantityDialog = false
                 }
             )
@@ -266,7 +266,7 @@ fun QuantityDialog(
     onDismiss: () -> Unit,
     onConfirm: () -> Unit
 ) {
-    var quantity by remember { mutableStateOf(initialQuantity) }
+    var amount by remember { mutableStateOf(initialQuantity) }
 
     Dialog(onDismissRequest = onDismiss) {
         Surface(
@@ -278,22 +278,22 @@ fun QuantityDialog(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 modifier = Modifier.padding(24.dp)
             ) {
-                androidx.compose.material.Icon(
+                Icon(
                     painter = painterResource(android.R.drawable.ic_menu_manage), // TODO: Replace with custom gear icon
                     contentDescription = "Settings",
                     modifier = Modifier.size(48.dp)
                 )
-                androidx.compose.material.Text("Количество товара", style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.Bold))
+                Text("Количество товара", style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.Bold))
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    androidx.compose.material.IconButton(onClick = { if (quantity > 0) { quantity-- ; onQuantityChanged(quantity)} }, modifier = Modifier.background(Color.LightGray, CircleShape)) {
+                    IconButton(onClick = { if (amount > 0) { amount-- ; onQuantityChanged(amount)} }, modifier = Modifier.background(Color.LightGray, CircleShape)) {
                         Icon(Icons.Filled.Clear, contentDescription = "Remove", tint = Color.Black)
                     }
-                    androidx.compose.material.Text(quantity.toString(), style = TextStyle(fontSize = 24.sp))
-                    androidx.compose.material.IconButton(onClick = { quantity++ ; onQuantityChanged(quantity) }, modifier = Modifier.background(Color.LightGray, CircleShape)) {
-                        androidx.compose.material.Icon(Icons.Filled.Add, contentDescription = "Add", tint = Color.Black)
+                    Text(amount.toString(), style = TextStyle(fontSize = 24.sp))
+                    IconButton(onClick = { amount++ ; onQuantityChanged(amount) }, modifier = Modifier.background(Color.LightGray, CircleShape)) {
+                        Icon(Icons.Filled.Add, contentDescription = "Add", tint = Color.Black)
                     }
                 }
 
@@ -302,11 +302,11 @@ fun QuantityDialog(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     TextButton(onClick = onDismiss) {
-                        androidx.compose.material.Text("Отмена")
+                        Text("Отмена")
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                     TextButton(onClick = onConfirm) {
-                        androidx.compose.material.Text("Принять")
+                        Text("Принять")
                     }
                 }
             }
